@@ -1,4 +1,6 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Create = () => {
@@ -9,9 +11,18 @@ const Create = () => {
     productImage:""
   });
 
+ const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await axios.post("https://6904bdfb6b8dabde4964ef27.mockapi.io/products",formData)
+      navigate("/")
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   const handleChange = (e) => {
